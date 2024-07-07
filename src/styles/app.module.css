@@ -1,0 +1,552 @@
+/* styles/Home.module.css */
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px); /* Di chuyển lên */
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Phần style chung cho toàn bộ trang */
+.root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0a0606; /* Màu nền */
+  overflow: hidden; /* Ngăn chặn cuộn trang */
+  font-family: 'Silkscreen', cursive; /* Font chữ */
+  font-size: 1.4rem;
+  color: #FF4500; /* Màu chữ */
+}
+
+.container {
+  width: 100vw; /* Chiều rộng bằng chiều rộng của viewport */
+  height: 96vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ngăn chặn tràn bề mặt */
+}
+
+.screen {
+  position: relative; /* Đảm bảo vị trí tương đối cho các phần tử tuyệt đối */
+  width: 90%; /* Chiều rộng màn hình */
+  max-width: 792px; /* Chiều rộng tối đa */
+  height: 100%; /* Chiều cao là 100% của container */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Canh chỉnh nội dung theo chiều dọc */
+  background-color: rgba(255, 255, 255, 0.8); /* Màu nền trong suốt */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Ngăn chặn tràn nội dung */
+}
+
+.logo-game {
+  width: 100%; /* Chiều rộng là 100% của phần tử cha */
+  max-width: 792px; /* Chiều rộng tối đa */
+  height: auto; /* Chiều cao tự điều chỉnh dựa trên chiều rộng */
+  margin-top: 20px; /* Khoảng cách từ đỉnh trang */
+}
+
+.title {
+  font-size: 2rem; /* Kích thước chữ */
+  color: #333; /* Màu chữ */
+  text-align: center; /* Canh chỉnh văn bản giữa */
+  margin: 20px 0; /* Khoảng cách trên và dưới tiêu đề */
+}
+
+.content {
+  width: 90%; /* Chiều rộng nội dung */
+  max-width: 600px; /* Chiều rộng tối đa */
+  text-align: center; /* Canh chỉnh văn bản giữa */
+  margin-bottom: 20px; /* Khoảng cách dưới nội dung */
+}
+
+.user_info {
+  position: absolute; /* Vị trí tuyệt đối */
+  top: 20px; /* Khoảng cách từ đỉnh trang */
+  left: 20px; /* Khoảng cách từ mép trái */
+  display: flex;
+  align-items: center;
+  z-index: 10; /* Thứ tự hiển thị */
+}
+
+.user_icon {
+  width: 128px; /* Chiều rộng biểu tượng người dùng */
+  height: 128px; /* Chiều cao biểu tượng người dùng */
+  border-radius: 50%; /* Bo góc thành hình tròn */
+  margin-right: 10px; /* Khoảng cách giữa biểu tượng và tên người dùng */
+}
+
+.user_name {
+  font-size: 1.4rem; /* Kích thước chữ tên người dùng */
+}
+
+.login_button {
+  background: none; /* Nền không có */
+  border: none; /* Không có viền */
+  cursor: pointer; /* Con trỏ chuột là con trỏ */
+  font-size: 1.3rem; 
+  color: #FF4500; /* Màu chữ */
+}
+
+.login_button_icon {
+  margin-right: 10px; /* Space between icon and text */
+  font-size: 1.5rem; 
+}
+
+.login_button:hover {
+  color: #4cfa08; 
+}
+
+.dragon_container {
+  position: absolute; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 150px; 
+}
+
+.dragon {
+  width: 350px; 
+  height: auto; 
+  position: absolute; 
+  animation: float 3s ease-in-out infinite; 
+  bottom: 10%; 
+}
+
+.cloud {
+  position: absolute;
+  width: 350px;
+  height: auto;
+  top: -600px; 
+  left: -150px;
+  z-index: 0; 
+}
+
+.centeredContent {
+  position: absolute;
+  top: calc(-470px - 50%); 
+  left: calc( -50%); 
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.dragon_shadow {
+  position: absolute; 
+  bottom: calc(10% - 15px); 
+  width: 200px; 
+  height: 30px; 
+  background: rgba(0, 0, 0, 0.8); 
+  border-radius: 50%; 
+  filter: blur(8px); 
+}
+
+.resources {
+  position: absolute;
+  top: calc(20px + 200px); /* Vị trí dưới username */
+  left: 20px; /* Góc trên bên trái màn hình */
+  display: flex;
+  flex-direction: column; /* Hiển thị các resource dọc theo cột */
+}
+
+.resource {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; /* Khoảng cách giữa các nguyên liệu */
+}
+
+.resource_icon {
+  position: relative; 
+  margin-right: 10px; /* Khoảng cách giữa biểu tượng và số lượng */
+}
+
+.resource_amount {
+  position: absolute;
+  bottom: 10px; /* Đặt số lượng ở giữa một nửa bên dưới */
+  left: 50%; /* Đặt số lượng ở giữa */
+  transform: translateX(-50%); /* Để căn giữa chính xác */
+  font-size: 1.4rem; /* Kích thước chữ số lượng */
+  color: #FF4500; /* Màu sắc của số lượng */
+  padding: 2px 8px; /* Đệm cho số lượng */
+  border-radius: 4px; /* Bo góc cho số lượng */
+}
+
+.features {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 0; /* Adjusts the position below resources */
+  right: 0;
+  margin-top: 10px; /* Adjust the margin as needed */
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+
+.featureButton {
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin: 0 10px; /* Add space between buttons */
+}
+
+.featureImage {
+  width: auto; /* Adjust the size as needed */
+  height: 128px; /* Adjust the size as needed */
+}
+
+.items {
+  position: absolute;
+  top: calc(20px + 200px); /* Vị trí dưới username */
+  right: 20px; /* Điều chỉnh khoảng cách từ phải sang */
+  display: flex;
+  flex-direction: column; /* Sắp xếp các item theo chiều dọc */
+  align-items: flex-end; /* Căn chỉnh theo chiều dọc bên phải */
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; /* Khoảng cách giữa các item */
+}
+
+.item_icon {
+  position: relative;
+  margin-right: 10px; /* Khoảng cách giữa biểu tượng và số lượng */
+}
+
+.item_amount {
+  position: absolute;
+  bottom: 10px; /* Đặt số lượng ở giữa một nửa bên dưới */
+  left: 50%; /* Đặt số lượng ở giữa */
+  transform: translateX(-50%); /* Để căn giữa chính xác */
+  font-size: 1.4rem; /* Kích thước chữ số lượng */
+  color: #FF4500; /* Màu sắc của số lượng */
+  padding: 2px 8px; /* Đệm cho số lượng */
+  border-radius: 4px; /* Bo góc cho số lượng */
+}
+
+.time_remaining {
+  font-size: 1.8rem;
+  color: #FF4500;
+  text-align: center;
+}
+
+.claim_button {
+  background-color: #FF4500;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1.8rem;
+  border-radius: 5px;
+}
+
+.claim_button:disabled {
+  background-color: grey;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Grey overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 192px;
+  height: 195px;
+  position: fixed;
+  top: 42%;
+  left: 46.5%;
+  transform: translate(-50%, -50%);
+  animation: spin 5s linear infinite; 
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%; /* Bạn có thể điều chỉnh kích thước này */
+  max-width: 400px; /* Điều chỉnh theo ý muốn */
+  background: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  z-index: 1000;
+  overflow-wrap: break-word; /* Hoặc word-wrap: break-word; */
+  word-break: break-word;
+}
+
+.popup_content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.close_button {
+  top: -10px;
+  right: -10px;
+  cursor: pointer;
+  background: red;
+  border: none;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  padding: 5px;
+  border-radius: 15%;
+}
+
+/* Điều chỉnh cho màn hình di động nhỏ hơn 600px */
+@media (max-width: 853px) {
+  .screen {
+    width: 100%;
+    height: 100%;
+  }
+
+  .spinner {
+    width: 192px;
+    height: 195px;
+    top: 40%;
+    left: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .screen {
+    width: 100%;
+    height: 100%;
+  }
+
+  .spinner {
+    width: 192px;
+    height: 195px;
+    top: 42%;
+    left: 39%;
+  }
+  .featureImage {
+    width: auto; /* Adjust the size as needed */
+    height: 128px; /* Adjust the size as needed */
+  }
+
+  .user_icon {
+    width: 96px; /* Giảm kích thước biểu tượng người dùng */
+    height: auto;
+  }
+
+  .featureImage {
+    width: auto; /* Adjust the size as needed */
+    height: 96px; /* Adjust the size as needed */
+  }
+}
+
+@media (max-width: 600px) {
+  .screen {
+    width: 100%;
+    height: 100%;
+  }
+
+  .title {
+    font-size: 1.5rem; /* Giảm kích thước chữ tiêu đề */
+  }
+
+  .user_icon {
+    width: 96px; /* Giảm kích thước biểu tượng người dùng */
+    height: auto;
+  }
+
+  .user_name {
+    font-size: 1rem; /* Giảm kích thước chữ tên người dùng */
+  }
+
+  .dragon_container {
+    bottom: 20px; /* Giảm khoảng cách từ dưới lên cho dragon_container */
+  }
+
+  .dragon {
+    width: 200px; /* Giảm kích thước con rồng */
+  }
+
+  .dragon_shadow {
+    width: 150px; /* Giảm kích thước bóng */
+  }
+
+  .resources {
+    top: calc(20px + 96px); /* Vị trí dưới username */
+    left: 5px; /* Góc trên bên trái màn hình */
+    display: flex;
+    flex-direction: column; /* Hiển thị các resource dọc theo cột */
+  }
+
+  .featureImage {
+    width: auto; /* Adjust the size as needed */
+    height: 96px; /* Adjust the size as needed */
+  }
+
+  .items {
+    top: calc(20px + 96px); /* Vị trí dưới username */
+    flex-direction: row; /* Xếp theo chiều ngang khi màn hình nhỏ hơn */
+    justify-content: center; /* Căn giữa các phần tử */
+    margin-top: 20px; /* Khoảng cách từ items đến user_info */
+    flex-direction: column; /* Sắp xếp các item theo chiều dọc */
+    align-items: flex-end; /* Căn chỉnh theo chiều dọc bên phải */
+  }
+
+  .item {
+    margin-right: 10px; /* Khoảng cách giữa các item khi xếp ngang */
+    margin-bottom: 20px; /* Không có khoảng cách giữa các item khi xếp ngang */
+  }
+
+  .item_icon {
+    margin-right: 0; /* Không có khoảng cách giữa icon và số lượng khi xếp ngang */
+  }
+
+  .spinner {
+    width: 128px;
+    height: 130px;
+    top: 40%;
+    left: 40%;
+  }
+
+  .cloud {
+    width: 250px;
+    top: -400px; /* Điều chỉnh vị trí đám mây so với rồng */
+    left: -120px;
+  }
+  
+  .centeredContent {
+    position: absolute;
+    top: calc(-300px - 50%); /* Đưa vào giữa theo chiều dọc */
+    left: calc( -10px - 40%); /* Đưa vào giữa theo chiều ngang */
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .claim_button {
+    background-color: #FF4500;
+    color: white;
+    border: none;
+    padding: 5px 25px 5px 25px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 420px) {
+  .screen {
+    width: 100%;
+    height: 100%;
+  }
+
+  .spinner {
+    width: 128px;
+    height: 130px;
+    top: 44%;
+    left: 35%;
+  }
+  
+  .cloud {
+    width: 250px;
+    top: -400px; /* Điều chỉnh vị trí đám mây so với rồng */
+    left: -120px;
+  }
+  
+  .centeredContent {
+    position: absolute;
+    top: calc(-300px - 50%); /* Đưa vào giữa theo chiều dọc */
+    left: calc( -10px - 40%); /* Đưa vào giữa theo chiều ngang */
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .user_icon {
+    width: 96px; /* Giảm kích thước biểu tượng người dùng */
+    height: auto;
+  }
+
+  .featureImage {
+    width: auto; /* Adjust the size as needed */
+    height: 96px; /* Adjust the size as needed */
+  }
+
+  .claim_button {
+    background-color: #FF4500;
+    color: white;
+    border: none;
+    padding: 5px 25px 5px 25px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 344px) {
+  .screen {
+    width: 100%;
+    height: 100%;
+  }
+
+  .spinner {
+    width: 128px;
+    height: 130px;
+    top: 46%;
+    left: 32%;
+    /* Các điều chỉnh khác nếu cần thiết */
+  }
+  
+  .cloud {
+    width: 150px;
+  }
+
+  
+  .cloud {
+    width: 250px;
+    top: -400px; /* Điều chỉnh vị trí đám mây so với rồng */
+    left: -120px;
+  }
+  
+  .centeredContent {
+    position: absolute;
+    top: calc(-300px - 50%); /* Đưa vào giữa theo chiều dọc */
+    left: calc( -10px - 40%); /* Đưa vào giữa theo chiều ngang */
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .claim_button {
+    background-color: #FF4500;
+    color: white;
+    border: none;
+    padding: 5px 25px 5px 25px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 5px;
+  }
+}

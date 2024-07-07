@@ -1,0 +1,56 @@
+/* togglenoti.module.css */
+
+.notification {
+    position: fixed;
+    bottom: 50px;
+    left: 45%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+  }
+  
+  .notification.success {
+    background-color: #4caf50; /* Green for success */
+  }
+  
+  .notification.error {
+    background-color: #f44336; /* Red for error */
+  }
+  
+  .notification.warning {
+    background-color: #ff9800; /* Orange for warning */
+  }
+  
+  /* Điều chỉnh cho màn hình di động nhỏ hơn 600px */
+@media (max-width: 600px) {
+  .notification {
+    left: 25%;
+  }
+}
+
+@media (max-width: 769px) {
+  .notification {
+    left: 50%;
+  }
+}
+
+@media (max-width: 344px) {
+  .notification {
+    left: 20%;
+  }
+}
+
+@media (max-width: 853px) {
+  .notification {
+    left: 45%;
+  }
+}
+
+@media (max-width: 420px) {
+  .notification {
+    left: 18%;
+  }
+}

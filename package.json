@@ -1,0 +1,42 @@
+{
+  "name": "blackdragonchest",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "predeploy": "npm run build",
+    "export": "next export"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@near-wallet-selector/core": "^8.9.7",
+    "@near-wallet-selector/here-wallet": "^8.9.7",
+    "@near-wallet-selector/meteor-wallet": "^8.9.10",
+    "@near-wallet-selector/modal-ui": "^8.9.7",
+    "@near-wallet-selector/my-near-wallet": "^8.9.7",
+    "bootstrap": "^5",
+    "bootstrap-icons": "^1.11.3",
+    "date-fns": "^3.6.0",
+    "events": "^3.3.0",
+    "near-api-js": "^3.0.4",
+    "next": "^14.2.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "overrides": {
+    "near-api-js": "^3.0.4"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "gh-pages": "^6.1.1"
+  }
+}
