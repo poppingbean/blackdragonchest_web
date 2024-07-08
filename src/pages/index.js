@@ -117,26 +117,30 @@ export default function BlackDragonChestNear() {
 
   const checkRegisterdAccount = async () => {
     //check if account_id registered
-    await wallet.viewMethod({ 
+    let storageResult = await wallet.viewMethod({ 
       contractId: TOKENCONTRACT, 
-      method: 'storage_balance_of', args: {'account_id': signedAccountId }  }).then(result => setAccountRegistered(result));
-    //If not, then register the account_id
-    if(!accountRegistered || accountRegistered === '0' || accountRegistered <= 0){ 
-      try{
-        await wallet.callMethod({
-          method: 'storage_deposit',
-          args: {
-            'account_id': signedAccountId,
-            'registration_only': true
-          },
-          contractId: TOKENCONTRACT,
-          deposit: '1250000000000000000000'
-        })
-      } catch (err) {
-        const errorMessage = err.message || 'Error register account';
-        setError(errorMessage);
-        showNotification('Error when register account: ' + errorMessage, 'error');
-      }
+      method: 'storage_balance_of', args: {'account_id': signedAccountId }  });
+    //Check registered result
+    if(storageResult === null || storageResult === undefined){
+       try{
+         let depositeStorageResult = await wallet.callMethod({
+           method: 'storage_deposit',
+           args: {
+             'account_id': signedAccountId,
+             'registration_only': true
+           },
+           contractId: TOKENCONTRACT,
+           deposit: '1250000000000000000000'
+         });
+         setAccountRegistered(depositeStorageResult);
+       } catch (err) {
+         const errorMessage = err.message || 'Error register account';
+         setError(errorMessage);
+         showNotification('Error when register account: ' + errorMessage, 'error');
+       }
+    }
+    else {
+      setAccountRegistered(storageResult);
     }
   }
   
@@ -151,7 +155,6 @@ export default function BlackDragonChestNear() {
       setError(errorMessage);
       showNotification('Error create new player: {0}' + errorMessage, 'error');
     } finally {
-      await checkRegisterdAccount();
       setLoading(false);
     }
   };
@@ -208,17 +211,26 @@ export default function BlackDragonChestNear() {
   const handleSwapGift = async () => {
     try {
       setLoading(true);
-      const currentPlayer = await wallet.viewMethod({ contractId: CONTRACT, method: 'get_player', args: {'account_id': signedAccountId }  });
-      await wallet.callMethod({ contractId: CONTRACT, method: 'swap_gift' });
-      const updatedPlayer = await wallet.viewMethod({ contractId: CONTRACT, method: 'get_player', args: {'account_id': signedAccountId }  });
-      setPlayer(updatedPlayer);
-
-      let responseRewardString = comparePlayerState(currentPlayer, updatedPlayer);
-      if(responseRewardString.length > 0){
-        setOnResponseString(responseRewardString);
+      //Firstly, we need to check if account registered or not
+      checkRegisterdAccount();
+      if(accountRegistered === null || accountRegistered === undefined){
+        const errorMessage = 'Cannot registered account id ' + signedAccountId + '. Please try again after allow popup on your browser!';
+        setError(errorMessage);
+        showNotification(errorMessage, 'error');
       }
+      else{
+        const currentPlayer = await wallet.viewMethod({ contractId: CONTRACT, method: 'get_player', args: {'account_id': signedAccountId }  });
+        await wallet.callMethod({ contractId: CONTRACT, method: 'swap_gift' });
+        const updatedPlayer = await wallet.viewMethod({ contractId: CONTRACT, method: 'get_player', args: {'account_id': signedAccountId }  });
+        setPlayer(updatedPlayer);
 
-      showNotification('You just opened a gift!', 'success');
+        let responseRewardString = comparePlayerState(currentPlayer, updatedPlayer);
+        if(responseRewardString.length > 0){
+          setOnResponseString(responseRewardString);
+        }
+
+        showNotification('You just opened a gift!', 'success');
+      }
     } catch (err) {
       const errorMessage = err.message || 'Error swapping gift';
       setError(errorMessage);
